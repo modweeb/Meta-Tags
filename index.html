@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد العلامات الوصفية (Meta Tags Generator)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+        .tool-wrapper .container {
+            max-width: 600px;
+            margin: auto;
+            background: #e0f7fa;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            text-align: right;
+        }
+        .tool-wrapper .input-group {
+            margin-bottom: 15px;
+        }
+        .tool-wrapper .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .tool-wrapper .input-group input,
+        .tool-wrapper .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        .tool-wrapper .input-group input:focus,
+        .tool-wrapper .input-group textarea:focus {
+            border-color: #00796b;
+            box-shadow: 0 0 5px rgba(0, 121, 107, 0.5);
+        }
+        .tool-wrapper button {
+            padding: 12px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s, transform 0.3s;
+            margin: 5px 0;
+            width: 100%;
+        }
+        .tool-wrapper button:hover {
+            background-color: #004d40;
+            transform: scale(1.05);
+        }
+        .tool-wrapper .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tool-wrapper .button-group button {
+            flex: 1;
+            margin: 5px;
+        }
+        .tool-wrapper .branding p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .tool-wrapper .branding a {
+            color: #00796b;
+            text-decoration: none;
+        }
+        .tool-wrapper .branding a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .tool-wrapper .container {
+                padding: 10px;
+            }
+            .tool-wrapper h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tool-wrapper">
+    <div class="container">
+        <h1><span class="icon">🔧</span> مولد العلامات الوصفية (Meta Tags Generator)</h1>
+        
+        <div class="input-group">
+            <h2><span class="icon">✍️</span> المدخلات (Inputs):</h2>
+            <label><span class="icon">🖊️</span> اسم الموقع (Title):</label>
+            <input id="title" placeholder="أدخل اسم الموقع" type="text" />
+            
+            <label><span class="icon">📝</span> وصف الموقع (Description):</label>
+            <textarea id="description" placeholder="أدخل وصف الموقع" rows="4"></textarea>
+            
+            <label><span class="icon">🔍</span> كلمات مفتاحية (Keywords):</label>
+            <input id="keywords" placeholder="أدخل الكلمات المفتاحية" type="text" />
+            
+            <label><span class="icon">👤</span> اسم المؤلف (Author):</label>
+            <input id="author" placeholder="أدخل اسم المؤلف" type="text" />
+            
+            <label><span class="icon">🔗</span> رابط الأيقونة (Favicon URL):</label>
+            <input id="favicon" placeholder="أدخل رابط الأيقونة" type="text" />
+            
+            <label><span class="icon">📷</span> صورة للمشاركة (Social Media Image):</label>
+            <input id="image" placeholder="أدخل رابط الصورة" type="text" />
+        </div>
+        
+        <div class="output-group">
+            <h2><span class="icon">💡</span> المخرجات (Outputs):</h2>
+            <textarea id="output" readonly="" rows="10"></textarea>
+            <div class="button-group">
+                <button onclick="copyCode()"><span class="icon">📋</span> نسخ الكود</button>
+                <button onclick="generateCode()"><span class="icon">⚙️</span> توليد الكود</button>
+                <button onclick="resetFields()"><span class="icon">♻️</span> إعادة ضبط الحقول</button>
+                <button onclick="downloadCode()"><span class="icon">💾</span> تنزيل الكود كملف .html</button>
+            </div>
+        </div>
+
+        <div class="branding">
+            <p>Developed by <a href="https://modweeb.com">مود ويب</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyCode() {
+        const output = document.getElementById('output');
+        output.select();
+        document.execCommand('copy');
+        alert('تم نسخ الكود!');
+    }
+
+    function resetFields() {
+        document.getElementById('title').value = '';
+        document.getElementById('description').value = '';
+        document.getElementById('keywords').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('favicon').value = '';
+        document.getElementById('image').value = '';
+        document.getElementById('output').value = '';
+    }
+
+    function downloadCode() {
+        const code = document.getElementById('output').value;
+        const blob = new Blob([code], { type: 'text/html' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'meta_tags.html';
+        link.click();
+    }
+
+    function generateCode() {
+        const title = document.getElementById('title').value;
+        const description = document.getElementById('description').value;
+        const keywords = document.getElementById('keywords').value;
+        const author = document.getElementById('author').value;
+        const favicon = document.getElementById('favicon').value;
+        const image = document.getElementById('image').value;
+        const output = document.getElementById('output');
+
+        output.value = 
+            `<meta name="title" content="${title}">
+            <meta name="description" content="${description}">
+            <meta name="keywords" content="${keywords}">
+            <meta name="author" content="${author}">
+            <link rel="icon" href="${favicon}">
+            <meta property="og:image" content="${image}">`;
+    }
+</script>
+
+</body>
+</html>
